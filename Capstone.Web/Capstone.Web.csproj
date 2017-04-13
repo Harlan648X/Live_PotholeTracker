@@ -154,6 +154,8 @@
     <Compile Include="DAL\IUserDAL.cs" />
     <Compile Include="DAL\PotholeSqlDAL.cs" />
     <Compile Include="DAL\UserSqlDAL.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Filter\PotholeAuthorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Views\Pothole\" />
   </ItemGroup>
   <PropertyGroup>
