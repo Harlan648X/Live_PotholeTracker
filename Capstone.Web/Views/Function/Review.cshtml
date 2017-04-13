@@ -50,6 +50,10 @@
                         </td>
                         <td>
                             <p id="potholeStatus">@ph.GetStatus()</p>
+                            @if (ph.Severity >0)
+                            {
+                                <p class="dateInfo">Severity: @((int)ph.Severity)</p>
+                            }
                         </td>
                        
                     </tr>
