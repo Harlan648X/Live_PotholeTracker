@@ -19,7 +19,7 @@ namespace Capstone.Web.DAL
         {
             try
             {
-                using(SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand regUser = new SqlCommand($"INSERT INTO appUser(email, password, name, userType, salt) VALUES(@email, @password, @name, @userType, @salt);", conn);
@@ -29,18 +29,26 @@ namespace Capstone.Web.DAL
                     regUser.Parameters.AddWithValue("@email", newUser.Email);
                     regUser.Parameters.AddWithValue("@password", saltAndHash.Value);
                     regUser.Parameters.AddWithValue("@name", newUser.Name);
-                    regUser.Parameters.AddWithValue("@userType", "r");
+                    if (newUser.Email.ToLower().Contains("@dot.gov"))
+                    {
+                        regUser.Parameters.AddWithValue("@userType", "e");
+                    }
+                    else
+                    {
+                        regUser.Parameters.AddWithValue("@userType", "r");
+                    }
+
                     regUser.Parameters.AddWithValue("@salt", saltAndHash.Key);
 
                     int result = regUser.ExecuteNonQuery();
 
-                    if(result > 0)
+                    if (result > 0)
                     {
                         return true;
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw;
             }
@@ -55,7 +63,7 @@ namespace Capstone.Web.DAL
         {
             try
             {
-                using(SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
@@ -65,7 +73,7 @@ namespace Capstone.Web.DAL
 
                     var result = checkEmail.ExecuteScalar();
 
-                    if(result != null)
+                    if (result != null)
                     {
                         return false;
                     }
@@ -76,7 +84,7 @@ namespace Capstone.Web.DAL
 
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw;
             }
@@ -88,7 +96,7 @@ namespace Capstone.Web.DAL
         {
             try
             {
-                using(SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
@@ -103,14 +111,14 @@ namespace Capstone.Web.DAL
                         string existingHashedPassword = Convert.ToString(reader["password"]);
                         string salt = Convert.ToString(reader["salt"]);
 
-                        if(LoginModel.ComparePasswords(user.Password, existingHashedPassword, salt, workFactor))
+                        if (LoginModel.ComparePasswords(user.Password, existingHashedPassword, salt, workFactor))
                         {
                             return Convert.ToInt32(reader["userId"]);
                         }
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw;
             }
@@ -122,7 +130,7 @@ namespace Capstone.Web.DAL
         {
             try
             {
-                using(SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
@@ -145,7 +153,7 @@ namespace Capstone.Web.DAL
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw;
             }
