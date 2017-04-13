@@ -51,7 +51,7 @@ namespace Capstone.Web.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand($"SELECT * FROM pothole WHERE repairEndDate > GETDATE()- 180 OR repairEndDate IS NULL;", conn);
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM pothole WHERE repairEndDate > GETDATE()- 180 OR repairEndDate IS NULL ORDER BY reportDate ASC;", conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 

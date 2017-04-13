@@ -1,10 +1,27 @@
 ﻿<script>$(function (){ $("#myNavbar").find("[href='/function/report']").parent().addClass("active"); })</script>
 <script src="~/Scripts/reportPothole.js"></script>
+@using Capstone.Web.Models
+@model List<PotholeModel>
+
 
 @{
     ViewBag.Title = "Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script>
+    $(document).ready(function () {
+        placePotholes(@Html.Raw(Json.Encode(Model.ToArray())), "");
+        @*placePotholeMarker(@Html.Raw(Json.Encode(Model.ToArray())), "");*@
+    })
+</script>
+
+@*<script>
+    $(document).ready(function () {
+        placePotholeMarker(@Html.Raw(Json.Encode(Model.ToArray())), "");
+    })
+</script>*@
+
 
 <div id="map"></div>
 

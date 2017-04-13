@@ -43,7 +43,7 @@ nav.navbar.navbar-default{
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.form-control {
+#severity {
     padding: 6px !important;
     font-size: 12px !important;
     height: 30px !important;
@@ -77,4 +77,9 @@ nav.navbar.navbar-default{
 
 #potholeButton{
     margin-bottom:0px !important;
+}
+
+.register_suggestion{
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
 }

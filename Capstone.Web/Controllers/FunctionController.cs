@@ -30,8 +30,9 @@ namespace Capstone.Web.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            List<PotholeModel> model = potholeDAL.GetAllPotholes();
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
