@@ -11,6 +11,7 @@ namespace Capstone.Web.Controllers
     public class FunctionController : PotholeController
     {
         private IPotholeDAL potholeDAL;
+        private string filterOption = "";
 
         public FunctionController(IPotholeDAL potholeDAL)
         {
@@ -56,21 +57,27 @@ namespace Capstone.Web.Controllers
             }
 
             List<PotholeModel> model = potholeDAL.GetAllPotholes();
+            filterOption = "all";
+
             if (option == "uninspected")
             {
                 model = potholeDAL.GetPotholesUninspected();
+                filterOption = "uninspected";
             }
             else if (option == "inspected")
             {
                 model = potholeDAL.GetInspectedOnly();
+                filterOption = "inspected";
             }
             else if (option == "inRepair")
             {
                 model = potholeDAL.GetRepairsInProgress();
+                filterOption = "inRepair";
             }
             else if (option == "complete")
             {
                 model = potholeDAL.GetRepairedPotholes();
+                filterOption = "complete";
             }
 
             return View("Review", model);
@@ -116,7 +123,12 @@ namespace Capstone.Web.Controllers
 
             int employeeId = ((User)Session["user"]).UserId;
 
-            //PotholeModel existingPothole = potholeDAL.GetOnePothole(model.PotholeID.ToString());
+            if (severity != null)
+            {
+                int intSeverity = Convert.ToInt32(severity);
+
+                potholeDAL.UpdateSeverity(potholeId, intSeverity);
+            }
 
             if (status == "inspect")
             {
@@ -129,16 +141,10 @@ namespace Capstone.Web.Controllers
             else if (status == "repairEnd")
             {
                 potholeDAL.UpdateEndRepairDate(potholeId);
+
             }
 
-            if (severity != null)
-            {
-                int intSeverity = Convert.ToInt32(severity);
-
-                potholeDAL.UpdateSeverity(potholeId, intSeverity);
-            }
-
-            return RedirectToAction("Review", "Function");
+            return RedirectToAction("Review", "Function", new { option = filterOption});
         }
 
     }
