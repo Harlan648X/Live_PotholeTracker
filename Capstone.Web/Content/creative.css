@@ -83,3 +83,10 @@ nav.navbar.navbar-default{
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-align: center;
 }
+
+.severityInfo{
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: small;
+    font-weight:bold;
+}

@@ -11,7 +11,6 @@ namespace Capstone.Web.Controllers
     public class FunctionController : PotholeController
     {
         private IPotholeDAL potholeDAL;
-        private string filterOption = "";
 
         public FunctionController(IPotholeDAL potholeDAL)
         {
@@ -58,27 +57,27 @@ namespace Capstone.Web.Controllers
             }
 
             List<PotholeModel> model = potholeDAL.GetAllPotholes();
-            filterOption = "all";
+            Session["option"] = "all";
 
             if (option == "uninspected")
             {
                 model = potholeDAL.GetPotholesUninspected();
-                filterOption = "uninspected";
+                Session["option"] = "uninspected";
             }
             else if (option == "inspected")
             {
                 model = potholeDAL.GetInspectedOnly();
-                filterOption = "inspected";
+                Session["option"] = "inspected";
             }
             else if (option == "inRepair")
             {
                 model = potholeDAL.GetRepairsInProgress();
-                filterOption = "inRepair";
+                Session["option"] = "inRepair";
             }
             else if (option == "complete")
             {
                 model = potholeDAL.GetRepairedPotholes();
-                filterOption = "complete";
+                Session["option"] = "complete";
             }
 
             return View("Review", model);
@@ -89,7 +88,7 @@ namespace Capstone.Web.Controllers
         {
             potholeDAL.DeletePothole(id);
 
-            return RedirectToAction("Review", "Function");
+            return RedirectToAction("Review", "Function", new { option = Session["option"].ToString() });
         }
 
         [HttpPost]
@@ -97,7 +96,7 @@ namespace Capstone.Web.Controllers
         {
             potholeDAL.UndoInspect(id);
 
-            return RedirectToAction("Review", "Function");
+            return RedirectToAction("Review", "Function", new { option = Session["option"].ToString() });
         }
 
         [HttpPost]
@@ -105,7 +104,7 @@ namespace Capstone.Web.Controllers
         {
             potholeDAL.UndoStartRepair(id);
 
-            return RedirectToAction("Review", "Function");
+            return RedirectToAction("Review", "Function", new { option = Session["option"].ToString() });
         }
 
         [HttpPost]
@@ -113,7 +112,7 @@ namespace Capstone.Web.Controllers
         {
             potholeDAL.UndoRepairComplete(id);
 
-            return RedirectToAction("Review", "Function");
+            return RedirectToAction("Review", "Function", new { option = Session["option"].ToString() });
         }
 
 
@@ -142,10 +141,9 @@ namespace Capstone.Web.Controllers
             else if (status == "repairEnd")
             {
                 potholeDAL.UpdateEndRepairDate(potholeId);
-
             }
 
-            return RedirectToAction("Review", "Function", new { option = filterOption});
+            return RedirectToAction("Review", "Function", new { option = Session["option"].ToString() });
         }
 
     }
