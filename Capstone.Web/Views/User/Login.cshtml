@@ -1,4 +1,4 @@
-﻿<script>$(function (){ $("#myNavbar").find("[href='/user/login']").parent().addClass("active"); })</script>
+﻿<script>$(function () { $("#myNavbar").find("[href='/user/login']").parent().addClass("active"); })</script>
 
 @{
     ViewBag.Title = "Login";
@@ -6,7 +6,8 @@
 }
 
 @model Capstone.Web.Models.LoginModel
-
+<br />
+<br />
 <div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
@@ -31,8 +32,15 @@
         @Html.ValidationMessage("invalid-login")
 
     </div>
-    <div class="col-sm-4"></div>
+    <div id="loginDesc">
+        <p>
+            <pre>
+       Since this is a Demo: Here are some logins you can use...
 
+       To login as  City Worker--- user: City@DOT.gov   password: TechElevator1!   gives you full access to all features
 
-
+       To login as  Public User--- user: HL@te.com      password: TechElevator1!   limited to report and view potholes
+</pre>
+        </p>
+    </div>
 </div>

@@ -46,7 +46,7 @@ INSERT INTO appUser (name, email, password, userType, salt) VALUES ( 'Harlan Lev
 INSERT INTO appUser (name, email, password, userType, salt) VALUES ( 'Aaron Perkins', 'AP@te.com', 'h0QzvMm9oNihS+9jN40NbuzdHQ8=','r','TGClx61O7Dk='); 
 INSERT INTO appUser (name, email, password, userType, salt) VALUES ( 'Subhadra Pullabhatla', 'SP@te.com', 'h0QzvMm9oNihS+9jN40NbuzdHQ8=','r','TGClx61O7Dk='); 
 INSERT INTO appUser (name, email, password, userType, salt) VALUES ( 'Radu Fotea', 'RF@te.com', 'h0QzvMm9oNihS+9jN40NbuzdHQ8=','r','TGClx61O7Dk='); 
-INSERT INTO appUser (name, email, password, userType, salt) VALUES ( 'City Worker', 'CW@te.com', 'h0QzvMm9oNihS+9jN40NbuzdHQ8=','e','TGClx61O7Dk='); 
+INSERT INTO appUser (name, email, password, userType, salt) VALUES ( 'City Worker', 'City@DOT.gov', 'h0QzvMm9oNihS+9jN40NbuzdHQ8=','e','TGClx61O7Dk='); 
 
 -- Records more than 180 days old and repaired
 INSERT INTO pothole (latitude, longitude, whoReported, whoInspected, picture, reportDate, inspectDate, repairStartDate, repairEndDate, severity, comment)

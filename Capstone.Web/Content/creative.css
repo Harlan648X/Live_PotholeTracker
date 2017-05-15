@@ -90,3 +90,10 @@ nav.navbar.navbar-default{
     font-size: small;
     font-weight:bold;
 }
+#loginDesc{
+    display:inline-block !important;
+    color:red !important;
+    text-align:left;
+    margin-left:20em;
+    margin-top:8em;
+}
