@@ -1,3 +1,5 @@
+This was our final project at Tech Elevator and is hosted on ApphHarbor. This project really gave meaning to "Full Stack". We used C#, MVC, Google Map API, HTML, CSS, Jquery, Bootstrap, Ninject and SQL. Go to the login page and log in as a City Worker to see all the features.
+
 # Final Capstone
 
 ## What Projects Are Included w/Repository
